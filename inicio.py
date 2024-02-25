@@ -13,7 +13,7 @@ life = 3
 level = 1
 kills = 0
 
-fps = 60
+fps = 120
 
 # Define fonts and colors
 font_console = pygame.font.match_font("consolas")
