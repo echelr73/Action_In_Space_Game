@@ -13,7 +13,7 @@ life = 3
 level = 1
 kills = 0
 
-fps = 120
+fps = 60
 
 # Define fonts and colors
 font_console = pygame.font.match_font("consolas")
@@ -77,7 +77,8 @@ class player(pygame.sprite.Sprite):
 
 # Initialization class
 class init():
-    pygame.init()
+    successes, failures = pygame.init()
+    print("{0} successes and {1} failures".format(successes, failures))
 
 # Load sounds and adjust volume
 laser_sound = pygame.mixer.Sound("laser.wav")
@@ -129,13 +130,12 @@ def game_over():
 enemys = pygame.sprite.Group()
 
 # Main game loop
-running = True
-while running:
+while True:
     clock.tick(fps)
     screen.blit(background, (0,0))
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
+            quit()
     
     # Show game information on screen
     text_objects("Life: " + str(life), font_arial, screen, white, 10, 10, 20)
@@ -183,7 +183,7 @@ while running:
             life -= 1
         if life == 0:
             game_over()
-            running = False
+            quit()
     
     # Increase level and adjust shooting cadence based on the number of enemies eliminated
     if kills == 10:
